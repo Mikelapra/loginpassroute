@@ -1,102 +1,103 @@
 // Snippets de código para poder componer el programa
 
-//Usado?: 
+//Usado?: YES
   const middlewares = require('./middlewares');
 //--- Explicación: 
-
+// Requerimos lo que se exporta del /middleware en app. Lo muevo a app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const bodyParser = require('body-parser');
 //--- Explicación:
-
+// Requerir body-parses. Copiar en app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const session = require('express-session');
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const express = require('express');
 //--- Explicación:
-
+// Requerimos express. Copiar a app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const bodyParser = require('body-parser');
 //--- Explicación:
-
+// Requerir body-parses. Copiar en app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const session = require('express-session');
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const dotenv = require('dotenv');
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const middlewares = require('./middlewares');
 //--- Explicación:
-
+// Requerimos lo que se exporta del /middleware en routes. Lo muevo a routes.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const routes = require('./routes');
 //--- Explicación:
-
+// Requerimos lo que se exporta del /middleware en routes. Lo muevo a routes.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 dotenv.config();
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const app = express();
 //--- Explicación:
-
+// Llamar a la funcion express. Lo copio app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const PORT = 4000;
 //--- Explicación:
+// Es el puerto que vamos a utilizar 
 
 // -------------------------------------------------------------------------------------
 
-//Usado?: 
+//Usado?: YES
 const dotenv = require('dotenv');
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 dotenv.config();
 //--- Explicación:
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 middlewares.setupApp(app);
 //--- Explicación: 
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 routes.setup(app);
 //--- Explicación: 
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 const validarPalabraMiddleware = (req, res, next) => {
   const palabraCorrecta = process.env.PALABRA_SECRETA || '';
 
@@ -108,12 +109,11 @@ const validarPalabraMiddleware = (req, res, next) => {
   }
 };
 //--- Explicación: 
-
-
+// Si acierta la palabra porseguirá (next()) si no redirecciona a error. Lo copiamos en app.js
 // -------------------------------------------------------------------------------------
 
 
-//Usado?:
+//Usado?: YES
 const setup = (app) => {
   app.get('/', (req, res) => {
     const mensajeError = req.query.error
@@ -125,12 +125,12 @@ const setup = (app) => {
   //Aquí va código dentro
 })}
 //--- Explicación: 
-
+//Booleano para acceder a la profile tras poner la palabra correcta. Lo copiamos a app.js
 
 // -------------------------------------------------------------------------------------
 
 
-//Usado?:
+//Usado?: YES
 res.send(`
   <html>
     <body>
@@ -139,17 +139,17 @@ res.send(`
       <form method="post" action="/profile">
         <label for="palabra">Introduce la palabra:</label>
         <input type="text" name="palabra" required>
-        <button type="submit">Enviar</button>
+        <button type="submit">iar</button>
       </form>
     </body>
   </html>
 `);
 //--- Explicación: 
-
-
+//
+// Pintar HTML. Lo copiamos en routes.js
 // -------------------------------------------------------------------------------------
 
-
+//Usado?: YES
 const setupAPP = (app) => {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(session({
@@ -158,8 +158,11 @@ const setupAPP = (app) => {
     saveUninitialized: true,
   }));
 };
+//--- Explicación: 
+/////////////////////////POR HACER/////////////////////
+// -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 app.post('/profile', middlewares.validarPalabraMiddleware, (req, res) => {
   res.send(`
     <h1>Ruta del Perfil</h1>
@@ -169,17 +172,17 @@ app.post('/profile', middlewares.validarPalabraMiddleware, (req, res) => {
   `);
 });
 //--- Explicación: 
-
+//
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //--- Explicación: 
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 app.use(session({
   secret: process.env.PALABRA_SECRETA || 'secretoSuperSecreto',
   resave: false,
@@ -190,15 +193,15 @@ app.use(session({
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?:YES
 app.listen(PORT, () => {
   console.log(`Servidor en ejecución en http://localhost:${PORT}`);
 });
 //--- Explicación: 
-
+// Para que el servidor escuche lo que estamos haciendo. Lo muevo app.js
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 const verificarSesionMiddleware = (req, res, next) => {
   if (req.session.palabraSecreta) {
     next();
@@ -207,11 +210,11 @@ const verificarSesionMiddleware = (req, res, next) => {
   }
 };
 //--- Explicación: 
-
+// Condicional para verificar la palabra secreta. Lo copiamos en middleware.js
 // -------------------------------------------------------------------------------------
 
 
-//Usado?:
+//Usado?: YES
 app.get('/profile', middlewares.verificarSesionMiddleware, (req, res) => {
   res.send(`
     <h1>Ruta del Perfil (Sesión activa)</h1>
@@ -225,7 +228,7 @@ app.get('/profile', middlewares.verificarSesionMiddleware, (req, res) => {
 // -------------------------------------------------------------------------------------
 
 
-//Usado?:
+//Usado?: YES
 app.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
@@ -238,21 +241,21 @@ app.post('/logout', (req, res) => {
 
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 module.exports = {
   setup,
 };
 //--- Explicación:
-
+// Exportamos objeto con setup dentro de routes. Lo copiamos en routes.js
 // -------------------------------------------------------------------------------------
 
-//Usado?:
+//Usado?: YES
 module.exports = {
   validarPalabraMiddleware,
   verificarSesionMiddleware,
   setupAPP,
 };
 //--- Explicación:
-
+// Exportamos objeto con validarPalabraMiddleware,verificarSesionMiddleware, setupAPP dentro de middleware.js. Lo copiamos en middleware.js
 // -------------------------------------------------------------------------------------
 
